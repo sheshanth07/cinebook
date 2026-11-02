@@ -1,0 +1,19 @@
+STARTING GITHUB AUTH AND UPLOAD
+Authenticating with GitHub...
+[GH] 
+[GH] ! One-time code (7E4C-E156) copied to clipboard
+=========================================
+ACTION REQUIRED:
+1. Open: https://github.com/login/device
+2. Enter Code: 7E4C-E156
+=========================================
+Authentication process finished!
+github.com
+  âœ“ Logged in to github.com account sheshanth07 (keyring)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************
+  - Token scopes: 'gist', 'read:org', 'repo'
+
+
+Logged in as GitHub user: sheshanth07
