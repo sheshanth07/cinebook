@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies — CineBook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-icon">🎬</span> Cine<span>Book</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="movies.html" class="active">Movies</a></li>
+      <li><a href="shows.html">Showtimes</a></li>
+      <li><a href="my-bookings.html">My Bookings</a></li>
+      <li><a href="admin.html" class="admin-link">⚙️ Admin</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">🎬 Movie Catalog</h1>
+        <p class="page-subtitle">Select a movie to explore cast details, director, synopsis, and showtimes</p>
+      </div>
+    </div>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Search by movie title, cast, or director...">
+      </div>
+      <select id="genre-filter" class="select-filter">
+        <option value="">All Genres</option>
+      </select>
+      <select id="lang-filter" class="select-filter">
+        <option value="">All Languages</option>
+      </select>
+    </div>
+
+    <!-- Movies Grid -->
+    <div id="movies-container" class="movie-grid">
+      <!-- Injected by movies.js -->
+    </div>
+
+  </main>
+
+  <!-- Movie Details Modal -->
+  <div id="movie-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('movie-modal')">&times;</button>
+      <div id="movie-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong>CineBook</strong> — Database Systems Design Mini-Project.</p>
+    <p style="margin-top: 0.35rem; font-size: 0.8rem; color: var(--text-dim);">
+      C++ Backend • Oracle SQL Architecture
+    </p>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/movies.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showtimes — CineBook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-icon">🎬</span> Cine<span>Book</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="movies.html">Movies</a></li>
+      <li><a href="shows.html" class="active">Showtimes</a></li>
+      <li><a href="my-bookings.html">My Bookings</a></li>
+      <li><a href="admin.html" class="admin-link">⚙️ Admin</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">🕒 Movie Showtimes</h1>
+        <p class="page-subtitle">Select a date and cinema location to choose your showtime</p>
+      </div>
+      <div>
+        <select id="movie-select" class="select-filter" style="min-width: 220px;">
+          <option value="0">All Movies</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Date Selector Tabs -->
+    <div id="date-selector" class="date-selector">
+      <!-- Injected by shows.js -->
+    </div>
+
+    <!-- Shows List Grouped by Theatre -->
+    <div id="shows-container">
+      <!-- Injected by shows.js -->
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong>CineBook</strong> — Database Systems Design Mini-Project.</p>
+    <p style="margin-top: 0.35rem; font-size: 0.8rem; color: var(--text-dim);">
+      C++ Backend • Oracle SQL Architecture
+    </p>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/shows.js"></script>
+</body>
+</html>

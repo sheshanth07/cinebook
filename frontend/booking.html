@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking & Payment — CineBook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-icon">🎬</span> Cine<span>Book</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="movies.html">Movies</a></li>
+      <li><a href="shows.html">Showtimes</a></li>
+      <li><a href="my-bookings.html">My Bookings</a></li>
+      <li><a href="admin.html" class="admin-link">⚙️ Admin</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- Active Checkout Section -->
+    <div id="checkout-section">
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">💳 Complete Your Reservation</h1>
+          <p class="page-subtitle">Enter customer details and confirm booking with simulated instant payment</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        
+        <!-- Left: Customer Form & Payment -->
+        <div>
+          <div class="card">
+            <h3 style="margin-bottom: 1.25rem; font-size: 1.2rem;">👤 Customer Information</h3>
+            <form id="booking-form">
+              <div class="form-group">
+                <label class="form-label" for="cust-name">Full Name *</label>
+                <input type="text" id="cust-name" class="form-control" placeholder="e.g. Srijith S D" required>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="cust-email">Email Address *</label>
+                  <input type="email" id="cust-email" class="form-control" placeholder="srijith@example.com" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cust-phone">Mobile Number</label>
+                  <input type="tel" id="cust-phone" class="form-control" placeholder="+91 98765 43210">
+                </div>
+              </div>
+
+              <!-- Payment Simulation Notice -->
+              <div style="background: rgba(245, 197, 24, 0.1); border: 1px solid rgba(245, 197, 24, 0.3); border-radius: var(--radius-sm); padding: 1rem; margin: 1.5rem 0;">
+                <div style="display: flex; gap: 0.6rem; align-items: flex-start;">
+                  <span style="font-size: 1.2rem;">⚡</span>
+                  <div>
+                    <strong style="color: var(--accent-gold); font-size: 0.9rem;">College Demonstration Mode:</strong>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.2rem;">
+                      No real card or bank details required. The C++ backend simulates instantaneous gateway approval, saves the transaction, and marks payment as <strong>SUCCESS</strong>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Payment Methods Visual -->
+              <div class="form-group">
+                <label class="form-label">Simulated Payment Method</label>
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                  <label style="background: var(--bg-card); border: 1px solid var(--accent-red); padding: 0.65rem 1rem; border-radius: var(--radius-sm); font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+                    <input type="radio" name="pay_mode" checked> UPI / QR (Instant)
+                  </label>
+                  <label style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 0.65rem 1rem; border-radius: var(--radius-sm); font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+                    <input type="radio" name="pay_mode"> Credit/Debit Card
+                  </label>
+                  <label style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 0.65rem 1rem; border-radius: var(--radius-sm); font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+                    <input type="radio" name="pay_mode"> Net Banking
+                  </label>
+                </div>
+              </div>
+
+              <div style="margin-top: 1.5rem;">
+                <button type="submit" id="pay-btn" class="btn btn-primary btn-block" style="padding: 0.9rem;">
+                  Confirm Booking & Simulate Payment
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Right: Order Summary -->
+        <div>
+          <div class="card">
+            <h3 style="margin-bottom: 1.25rem; font-size: 1.2rem;">🎟️ Order Summary</h3>
+            <div id="order-summary-content">
+              <!-- Injected by booking.js -->
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-dim); text-align: center;">
+              Tickets are permanently recorded into the database upon confirmation.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Confirmation Section (Revealed after payment) -->
+    <div id="success-section" style="display: none;">
+      <!-- Injected by booking.js -->
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong>CineBook</strong> — Database Systems Design Mini-Project.</p>
+    <p style="margin-top: 0.35rem; font-size: 0.8rem; color: var(--text-dim);">
+      C++ Backend • Oracle SQL Architecture
+    </p>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

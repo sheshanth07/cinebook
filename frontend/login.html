@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Access Portal — CineBook</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: radial-gradient(circle at top center, #17233f 0%, #070a12 80%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    .portal-box {
+      width: 100%;
+      max-width: 460px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      padding: 2.25rem;
+      margin: auto;
+    }
+    .portal-logo {
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+    .portal-logo .brand-icon {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+    .portal-logo h1 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    .portal-logo h1 span {
+      color: var(--accent-red);
+    }
+    .portal-logo p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 0.2rem;
+    }
+    .role-toggle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      background: var(--bg-card);
+      padding: 0.35rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.75rem;
+      border: 1px solid var(--border-color);
+    }
+    .role-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.75rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    .role-btn.active {
+      background: var(--accent-red);
+      color: white;
+      box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+    }
+    .role-btn.admin-active {
+      background: #d97706 !important;
+      color: white !important;
+      box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4) !important;
+    }
+    .quick-box {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-light);
+    }
+    .quick-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-dim);
+      margin-bottom: 0.65rem;
+      text-align: center;
+    }
+    .quick-btn {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed var(--border-color);
+      color: var(--text-main);
+      padding: 0.6rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+      transition: var(--transition);
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .quick-btn:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: var(--text-dim);
+    }
+    .notice-bar {
+      background: rgba(229, 9, 20, 0.1);
+      border: 1px solid rgba(229, 9, 20, 0.3);
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.85rem;
+      font-size: 0.85rem;
+      color: #fca5a5;
+      margin-bottom: 1.25rem;
+      display: none;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal-box">
+    
+    <!-- CineBook Logo -->
+    <div class="portal-logo">
+      <span class="brand-icon">🎬</span>
+      <h1>Cine<span>Book</span></h1>
+      <p>Movie Ticket Booking System</p>
+    </div>
+
+    <!-- Alert / Notice Bar (If redirected) -->
+    <div id="portal-notice" class="notice-bar"></div>
+
+    <!-- Role Switch Toggle -->
+    <div class="role-toggle">
+      <button id="btn-user-mode" class="role-btn active" onclick="setLoginMode('user')">
+        👤 User Login
+      </button>
+      <button id="btn-admin-mode" class="role-btn" onclick="setLoginMode('admin')">
+        🔐 Admin Login
+      </button>
+    </div>
+
+    <!-- USER FORM SECTION -->
+    <div id="section-user">
+      
+      <!-- Login Form -->
+      <form id="form-user-login">
+        <div class="form-group">
+          <label class="form-label" for="user-email">Email Address</label>
+          <input type="email" id="user-email" class="form-control" placeholder="rahul@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="user-password">Password</label>
+          <input type="password" id="user-password" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" id="btn-submit-user" class="btn btn-primary btn-block" style="padding: 0.85rem;">
+          Login as Customer →
+        </button>
+      </form>
+
+      <!-- Toggle to Sign Up -->
+      <div style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+        Don't have an account? 
+        <a href="javascript:void(0)" onclick="toggleSignUp(true)" style="color: var(--accent-cyan); font-weight: 600; text-decoration: none;">
+          Create New Account
+        </a>
+      </div>
+
+      <!-- Sign Up Form (Hidden by default) -->
+      <form id="form-user-register" style="display: none; margin-top: 1rem;">
+        <div class="form-group">
+          <label class="form-label" for="reg-name">Full Name</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="e.g. Srijith S D" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-email">Email Address</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="srijith@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reg-password">Password (min 4 characters)</label>
+          <input type="password" id="reg-password" class="form-control" placeholder="••••••••" required minlength="4">
+        </div>
+        <button type="submit" id="btn-submit-reg" class="btn btn-primary btn-block" style="padding: 0.85rem; background: #0284c7;">
+          Sign Up & Start Booking →
+        </button>
+        <div style="text-align: center; margin-top: 0.75rem; font-size: 0.85rem;">
+          <a href="javascript:void(0)" onclick="toggleSignUp(false)" style="color: var(--text-muted); text-decoration: none;">
+            ← Back to Customer Login
+          </a>
+        </div>
+      </form>
+
+      <!-- Guest Browse Option -->
+      <div style="text-align: center; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-light);">
+        <a href="index.html" onclick="sessionStorage.setItem('cinebook_guest_browse', '1')" style="color: var(--text-muted); font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+          👀 Browse movies & showtimes as guest →
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ADMIN FORM SECTION -->
+    <div id="section-admin" style="display: none;">
+      
+      <div style="background: rgba(217, 119, 6, 0.1); border: 1px solid rgba(217, 119, 6, 0.3); border-radius: var(--radius-sm); padding: 0.75rem; font-size: 0.8rem; color: #fbbf24; margin-bottom: 1.25rem; text-align: center;">
+        🛡️ Restricted Administrator Access Area
+      </div>
+
+      <form id="form-admin-login">
+        <div class="form-group">
+          <label class="form-label" for="admin-email">Admin Email</label>
+          <input type="email" id="admin-email" class="form-control" placeholder="admin@cinebook.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="admin-password">Admin Password</label>
+          <input type="password" id="admin-password" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" id="btn-submit-admin" class="btn btn-primary btn-block" style="padding: 0.85rem; background: #d97706;">
+          Login to Admin Control Panel ⚙️
+        </button>
+      </form>
+
+    </div>
+
+  </div>
+
+  <div style="margin-top: 1.5rem; text-align: center; font-size: 0.8rem; color: var(--text-dim);">
+    CineBook Cinema Database Systems Mini-Project • C++ & Oracle Architecture
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    let currentMode = 'user';
+
+    function setLoginMode(mode) {
+      currentMode = mode;
+      const userBtn = document.getElementById('btn-user-mode');
+      const adminBtn = document.getElementById('btn-admin-mode');
+      const userSec = document.getElementById('section-user');
+      const adminSec = document.getElementById('section-admin');
+
+      if (mode === 'admin') {
+        userBtn.classList.remove('active');
+        adminBtn.classList.add('role-btn', 'admin-active');
+        userSec.style.display = 'none';
+        adminSec.style.display = 'block';
+      } else {
+        adminBtn.classList.remove('role-btn', 'admin-active');
+        userBtn.classList.add('active');
+        userSec.style.display = 'block';
+        adminSec.style.display = 'none';
+      }
+    }
+
+    function toggleSignUp(show) {
+      document.getElementById('form-user-login').style.display = show ? 'none' : 'block';
+      document.getElementById('form-user-register').style.display = show ? 'block' : 'none';
+    }
+
+    async function submitLogin(email, password, role) {
+      try {
+        const res = await fetch(`${API_BASE}/api/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, role })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || 'Login failed. Please check credentials.');
+        }
+
+        // Store user in storage
+        localStorage.setItem('cinebook_user', JSON.stringify(data.user));
+        if (data.user.role === 'admin' && data.user.admin_token) {
+          sessionStorage.setItem('cinebook_admin_token', data.user.admin_token);
+        }
+
+        showToast(`Login successful! Welcome, ${data.user.username}.`, 'success');
+
+        const params = new URLSearchParams(window.location.search);
+        const redirect = params.get('redirect');
+
+        setTimeout(() => {
+          if (data.user.role === 'admin') {
+            window.location.href = 'admin.html';
+          } else if (redirect) {
+            window.location.href = redirect;
+          } else {
+            window.location.href = 'index.html';
+          }
+        }, 600);
+
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check query params for messages or preset mode
+      const params = new URLSearchParams(window.location.search);
+      const mode = params.get('mode');
+      const msg = params.get('msg');
+
+      if (mode === 'admin') {
+        setLoginMode('admin');
+      }
+
+      const notice = document.getElementById('portal-notice');
+      if (msg === 'login_required') {
+        notice.textContent = '🔒 Ticket booking requires logging in. Please log in to proceed.';
+        notice.style.display = 'block';
+      } else if (msg === 'admin_required') {
+        notice.textContent = '🔒 Admin credentials required to access the Admin Control Panel.';
+        notice.style.display = 'block';
+      }
+
+      // User Login Form Submit
+      document.getElementById('form-user-login').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('user-email').value.trim();
+        const pass = document.getElementById('user-password').value;
+        submitLogin(email, pass, 'user');
+      });
+
+      // User Register Form Submit
+      document.getElementById('form-user-register').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('reg-name').value.trim();
+        const email = document.getElementById('reg-email').value.trim();
+        const password = document.getElementById('reg-password').value;
+
+        try {
+          const res = await fetch(`${API_BASE}/api/auth/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, email, password })
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || 'Registration failed.');
+
+          localStorage.setItem('cinebook_user', JSON.stringify(data.user));
+          showToast(`Account created! Welcome, ${data.user.username}.`, 'success');
+          setTimeout(() => window.location.href = 'index.html', 600);
+        } catch (err) {
+          showToast(err.message, 'error');
+        }
+      });
+
+      // Admin Login Form Submit
+      document.getElementById('form-admin-login').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('admin-email').value.trim();
+        const pass = document.getElementById('admin-password').value;
+        submitLogin(email, pass, 'admin');
+      });
+    });
+  </script>
+</body>
+</html>

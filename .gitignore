@@ -1,0 +1,17 @@
+# CineBook .gitignore
+*.exe
+*.obj
+*.o
+*.pdb
+*.ilk
+*.idb
+*.exp
+*.lib
+build/
+bin/
+.env
+cinebook.db
+cinebook.db-journal
+*.log
+.vs/
+.vscode/
